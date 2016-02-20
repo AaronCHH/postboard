@@ -1,0 +1,8 @@
+<h3>Post Lists</h3>
+<% @posts.each do |post| %>
+   <div>
+      <p><%= post.title %></p>
+      <p><%= post.content %></p>      
+      <%= link_to 'show this post', post_path(post) %>
+   </div>
+<% end %>
