@@ -1,8 +1,20 @@
-<h3>Post Lists</h3>
+<%= render 'shared/title', title: 'Post List'%>
+
 <% @posts.each do |post| %>
-   <div>
-      <p><%= post.title %></p>
-      <p><%= post.content %></p>      
-      <%= link_to 'show this post', post_path(post) %>
-   </div>
+  
+  <div class="row">
+    <div class="well col-md-6">
+      
+      <h4><%= post.title %></h4>
+      
+      <p>
+        <%= post.content %>
+      </p>
+      <br>
+      <span>
+        <%= link_to "show this post", post_path(post) %>
+      </span>
+    </div>
+  </div>
+
 <% end %>
