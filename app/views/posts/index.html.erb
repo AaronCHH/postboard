@@ -1,12 +1,8 @@
 <%= render 'shared/title', title: 'Post List'%>
-
-<% @posts.each do |post| %>
-  
+<% @posts.each do |post| %>  
   <div class="row">
-    <div class="well col-md-6">
-      
-      <h4><%= post.title %></h4>
-      
+    <div class="well col-md-6">      
+      <h4><%= post.title %></h4>      
       <p>
         <%= post.content %>
       </p>
@@ -16,5 +12,4 @@
       </span>
     </div>
   </div>
-
 <% end %>

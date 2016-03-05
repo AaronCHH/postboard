@@ -1,0 +1,22 @@
+<%= render 'shared/title', title: 'Create New post' %>
+<hr>
+<div class="well col-md-12">
+  <%= form_for @post do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <br>
+      <%= f.text_field :title %>
+    </div>
+    <div class="form-group">
+      <%= f.label :content %>
+      <br>
+      <%= f.text_area :content, rows: 5 %>
+    </div>
+  <br>
+<!-- create button and add bootstrap style -->
+    <%= f.submit(@post.new_record? ? 'Create Post' : 'Update Post', class: 'btn btn-primary') %>
+  <% end %>
+</div>
+<%= link_to 'Back to Post List', posts_path %>
+
+
