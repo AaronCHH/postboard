@@ -9,12 +9,23 @@ Rails.application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
+  get '/register', to: 'users#new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+  
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :posts
+  
+  resources :users, only: [:new, :create, :edit, :update, :show]
+  resources :categories, only: [:index, :new, :create]
+  
+  resources :posts do 
+    resources :comments 
+  end
 
   # Example resource route with options:
   #   resources :products do
