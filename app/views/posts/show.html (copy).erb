@@ -1,0 +1,43 @@
+<%= render 'shared/title', title: "Show post #{@post.id}: #{@post.title}"%>
+
+<div class="row">
+  <div class="col-md-8 well">
+    <h3><%= @post.title %></h3>
+    <p>
+      <%= @post.content %>
+    </p>
+  </div>
+</div>
+
+<!-- All Comments -->
+<h4>All Comments:</h4>
+
+<% @post.comments.each do |comment| %>
+  <div class="row">
+    <div class="col-md-6 well">
+      <p>
+        <%= comment.content %>
+      </p>
+    </div>
+  </div>
+<% end %>
+
+<!-- Leave a comment -->
+<h4>Leave a comment:</h4>
+
+<%= form_for [@post, @comment] do |f| %>
+  <div class="row">
+    <%= f.text_area :content, rows: 3, class: 'col-md-4' %>
+    <div class="col-md-2">
+      <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
+    </div>
+  </div>
+  <br>
+
+<% end %>
+
+<hr>
+
+<div class="row">
+  <%= link_to 'go back to all posts', posts_path %>
+</div>
