@@ -1,15 +1,17 @@
-<%= render 'shared/title', title: "Show post #{@post.id}: #{@post.title}"%>
+<%= render 'shared/title', title: "#{@post.title}"%>
 
 <div class="row">
   <div class="col-md-8 well">
+    <%= render partial: "categories/category", collection: @post.categories %>
     <h3><%= @post.title %></h3>
     <p>
       <%= @post.content %>
     </p>
+    <br>
+    <small>posted by </small><%= " #{@post.user.name}" %>
   </div>
 </div>
 
-<!-- All Comments -->
 <h4>All Comments:</h4>
 
 <% @post.comments.each do |comment| %>
@@ -18,21 +20,24 @@
       <p>
         <%= comment.content %>
       </p>
+      <br>
+      <small>commented by </small><%= "#{comment.user.name}" %>
     </div>
   </div>
 <% end %>
 
-<!-- Leave a comment -->
-<h4>Leave a comment:</h4>
+<% if logged_in? %>
 
-<%= form_for [@post, @comment] do |f| %>
-  <div class="row">
-    <%= f.text_area :content, rows: 3, class: 'col-md-4' %>
-    <div class="col-md-2">
-      <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
+  <h4>Leave a comment:</h4>
+  <%= form_for [@post, @comment] do |f| %>
+    <div class="row">
+      <%= f.text_area :content, rows: 3, class: 'col-md-4' %>
+      <div class="col-md-2">
+        <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
+      </div>
     </div>
-  </div>
-  <br>
+    <br>
+  <% end %>
 
 <% end %>
 
